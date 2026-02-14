@@ -2,4 +2,7 @@ fastapi
 uvicorn
 httpx
 motor
+pymongo
 pydantic
+pydantic[email]
+python-dotenv
