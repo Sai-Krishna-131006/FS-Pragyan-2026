@@ -1,0 +1,9 @@
+{
+  "name": "smart-patient-triage",
+  "private": true,
+  "scripts": {
+    "client:dev": "npm run dev --prefix client",
+    "client:build": "npm run build --prefix client",
+    "client:preview": "npm run preview --prefix client"
+  }
+}

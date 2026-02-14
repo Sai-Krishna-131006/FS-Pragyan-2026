@@ -1,0 +1,77 @@
+# ========================
+# Claude temporary files
+# ========================
+tmpclaude-*
+
+# ========================
+# OS artifacts
+# ========================
+nul
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========================
+# Python
+# ========================
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ========================
+# ML model artifacts
+# ========================
+*.pkl
+*.h5
+*.pt
+*.onnx
+*.joblib
+
+# ========================
+# Node.js
+# ========================
+node_modules/
+dist/
+dist-ssr/
+*.local
+package-lock.json
+
+# ========================
+# Logs
+# ========================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ========================
+# Environment / secrets
+# ========================
+.env
+.env.*
+!.env.example
+
+# ========================
+# Editor / IDE
+# ========================
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ========================
+# Backup / merge artifacts
+# ========================
+c:pragyan_backup_merge/

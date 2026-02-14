@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 const SYMPTOM_OPTIONS = [
     "Chest Pain",
@@ -66,6 +68,7 @@ function SectionCard({ step, icon, title, subtitle, children }) {
 }
 
 function PatientInput() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         age: "",
         gender: "",
@@ -95,9 +98,36 @@ function PatientInput() {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Patient Data:", formData);
+
+        const allSymptoms = [...formData.symptoms];
+        if (formData.additionalSymptoms.trim()) {
+            allSymptoms.push(formData.additionalSymptoms.trim());
+        }
+
+        const notesParts = [];
+        if (formData.conditions.length > 0 && !formData.conditions.includes("None")) {
+            notesParts.push("Pre-existing conditions: " + formData.conditions.join(", "));
+        }
+        if (formData.otherCondition.trim()) {
+            notesParts.push("Other: " + formData.otherCondition.trim());
+        }
+
+        try {
+            const response = await api.post("/triage", {
+                age: Number(formData.age),
+                gender: formData.gender,
+                symptoms: allSymptoms,
+                blood_pressure: formData.bloodPressure,
+                heart_rate: Number(formData.heartRate),
+                temperature: Number(formData.temperature),
+                notes: notesParts.length ? notesParts.join(". ") : undefined,
+            });
+            navigate("/result", { state: { result: response.data } });
+        } catch {
+            alert("Failed to submit triage data. Please try again.");
+        }
     };
 
     const labelClass = LABEL_CLASS;
