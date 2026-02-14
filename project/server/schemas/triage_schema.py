@@ -8,6 +8,7 @@ class TriageRequest(BaseModel):
     blood_pressure: str
     heart_rate: int
     temperature: float
+    conditions: list[str] = []
     notes: str | None = None
 
 

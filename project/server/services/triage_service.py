@@ -23,7 +23,7 @@ def _build_ai_payload(data: TriageRequest) -> dict:
         "heart_rate": data.heart_rate,
         "temperature": data.temperature,
         "symptoms": data.symptoms,
-        "conditions": [],
+        "conditions": data.conditions,
     }
 
 

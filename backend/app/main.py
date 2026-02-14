@@ -15,4 +15,4 @@ class PatientInput(BaseModel):
 
 @app.post("/predict")
 def predict(patient: PatientInput):
-    return predict_patient_json(patient.dict())
+    return predict_patient_json(patient.model_dump())

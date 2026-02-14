@@ -80,10 +80,12 @@ function InputPage() {
             allSymptoms.push(formData.additionalSymptoms.trim());
         }
 
-        const notesParts = [];
-        if (formData.conditions.length > 0 && !formData.conditions.includes("None")) {
-            notesParts.push("Pre-existing conditions: " + formData.conditions.join(", "));
+        const allConditions = formData.conditions.filter((c) => c !== "None");
+        if (formData.otherCondition.trim()) {
+            allConditions.push(formData.otherCondition.trim());
         }
+
+        const notesParts = [];
         if (formData.otherCondition.trim()) {
             notesParts.push("Other: " + formData.otherCondition.trim());
         }
@@ -96,6 +98,7 @@ function InputPage() {
                 blood_pressure: formData.bloodPressure,
                 heart_rate: Number(formData.heartRate),
                 temperature: Number(formData.temperature),
+                conditions: allConditions,
                 notes: notesParts.length ? notesParts.join(". ") : undefined,
             });
             navigate("/result", { state: { result: response.data } });

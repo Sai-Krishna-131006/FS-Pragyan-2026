@@ -1,12 +1,15 @@
 import joblib
 import numpy as np
 import shap
+from pathlib import Path
 
 # -------- Load Saved Objects --------
-model = joblib.load("model/triage_model.pkl")
-mlb_symptoms = joblib.load("model/symptom_encoder.pkl")
-mlb_conditions = joblib.load("model/condition_encoder.pkl")
-feature_names = joblib.load("model/feature_names.pkl")
+_MODEL_DIR = Path(__file__).resolve().parent.parent / "model"
+
+model = joblib.load(_MODEL_DIR / "triage_model.pkl")
+mlb_symptoms = joblib.load(_MODEL_DIR / "symptom_encoder.pkl")
+mlb_conditions = joblib.load(_MODEL_DIR / "condition_encoder.pkl")
+feature_names = joblib.load(_MODEL_DIR / "feature_names.pkl")
 
 explainer = shap.TreeExplainer(model)
 
